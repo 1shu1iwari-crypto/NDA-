@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Defence Entry Medical Self-Assessment</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body class="bg-gray-100 text-gray-800 antialiased">
+        <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    Defence Officer Entry Medical Self-Assessment
+                </h1>
+                <p class="text-gray-600 mt-2">
+                    Check your eligibility for NDA & CDS entries based on
+                    official medical standards.
+                </p>
+                <p class="text-sm text-red-600 mt-2 font-semibold">
+                    Disclaimer: This tool is for self-assessment only and is not
+                    a substitute for an official medical examination.
+                </p>
+            </header>
+
+            <!-- Stepper Navigation -->
+            <div
+                id="stepper"
+                class="flex items-center justify-center mb-10 space-x-2 md:space-x-4"
+            >
+                <!-- Stepper will be dynamically generated here -->
+            </div>
+
+            <main
+                id="test-container"
+                class="bg-white p-6 sm:p-8 rounded-xl shadow-lg"
+            >
+                <!-- PAGE 1: Vitals -->
+                <div id="page-1" class="page-content">
+                    <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+                        Step 1: Enter Your Vitals
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                for="entry"
+                                class="block text-sm font-medium text-gray-700"
+                                >Type of Entry</label
+                            >
+                            <select
+                                id="entry"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            >
+                                <option value="nda_army_navy">
+                                    NDA (Army / Navy)
+                                </option>
+                                <option value="nda_af">NDA (Air Force)</option>
+                                <option value="cds_ima_ina_ota">
+                                    CDS (IMA / INA / OTA)
+                                </option>
+                                <option value="cds_afa">CDS (AFA)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                for="gender"
+                                class="block text-sm font-medium text-gray-700"
+                                >Gender</label
+                            >
+                            <select
+                                id="gender"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                for="age"
+                                class="block text-sm font-medium text-gray-700"
+                                >Age (in years)</label
+                            >
+                            <input
+                                type="number"
+                                step="0.1"
+                                id="age"
+                                placeholder="e.g., 17.5"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                for="height"
+                                class="block text-sm font-medium text-gray-700"
+                                >Height (in cm)</label
+                            >
+                            <input
+                                type="number"
+                                id="height"
+                                placeholder="e.g., 170"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div class="md:col-span-2">
+                            <label
+                                for="weight"
+                                class="block text-sm font-medium text-gray-700"
+                                >Weight (in kg)</label
+                            >
+                            <input
+                                type="number"
+                                id="weight"
+                                placeholder="e.g., 60"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        id="vitals-results-container"
+                        class="mt-8 hidden border-t pt-6"
+                    ></div>
+                </div>
+
+                <!-- PAGE 2: Vision -->
+                <div id="page-2" class="page-content hidden">
+                    <h2
+                        class="text-2xl font-semibold mb-6 text-gray-800 border-b pb-4"
+                    >
+                        Step 2: Vision Criteria Check
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                for="entry-type"
+                                class="block text-sm font-medium text-gray-700 mb-1"
+                                >Select Your Entry Type</label
+                            >
+                            <select
+                                id="entry-type"
+                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            >
+                                <option value="" selected disabled>
+                                    -- Choose an Entry --
+                                </option>
+                                <option value="nda">10+2 (NDA)</option>
+                                <option value="cds">Graduate (CDS)</option>
+                            </select>
+                        </div>
+                        <div
+                            id="service-selection-container"
+                            class="hidden-section"
+                        >
+                            <label
+                                for="service-type"
+                                class="block text-sm font-medium text-gray-700 mb-1"
+                                >Select Service</label
+                            >
+                            <select
+                                id="service-type"
+                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            ></select>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                for="myopia"
+                                class="block text-sm font-medium text-gray-700"
+                                >Myopia (Nearsightedness)</label
+                            >
+                            <input
+                                type="number"
+                                step="0.25"
+                                id="myopia"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                placeholder="e.g., -1.75"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                for="hypermetropia"
+                                class="block text-sm font-medium text-gray-700"
+                                >Hypermetropia (Farsightedness)</label
+                            >
+                            <input
+                                type="number"
+                                step="0.25"
+                                id="hypermetropia"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                placeholder="e.g., +1.5"
+                            />
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">
+                                Color Vision Test (Ishihara)
+                            </h3>
+                            <span class="text-lg font-semibold text-gray-800"
+                                >Your Score:
+                                <span
+                                    id="color-vision-score"
+                                    class="text-blue-600"
+                                    >0</span
+                                >
+                                / 11</span
+                            >
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Enter the number you see in each plate. The border
+                            will indicate if you are correct.
+                        </p>
+                        <div
+                            id="color-blind-test-grid"
+                            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+                        ></div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-lg font-semibold mb-2">
+                            Corrective Surgery (e.g., LASIK, PRK)
+                        </h3>
+                        <div class="flex space-x-6" id="lasik-radio-group">
+                            <label class="flex items-center"
+                                ><input
+                                    type="radio"
+                                    name="lasik"
+                                    value="yes"
+                                    class="mr-2"
+                                />
+                                Yes</label
+                            >
+                            <label class="flex items-center"
+                                ><input
+                                    type="radio"
+                                    name="lasik"
+                                    value="no"
+                                    class="mr-2"
+                                    checked
+                                />
+                                No</label
+                            >
+                        </div>
+                        <div
+                            id="lasik-details"
+                            class="hidden-section mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg border"
+                        >
+                            <div>
+                                <label
+                                    for="lasik-age"
+                                    class="block text-sm font-medium text-gray-700"
+                                    >Age at surgery</label
+                                >
+                                <input
+                                    type="number"
+                                    id="lasik-age"
+                                    class="mt-1 block w-full rounded-md border-gray-300"
+                                    placeholder="e.g., 21"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    for="lasik-duration"
+                                    class="block text-sm font-medium text-gray-700"
+                                    >Months since surgery</label
+                                >
+                                <input
+                                    type="number"
+                                    id="lasik-duration"
+                                    class="mt-1 block w-full rounded-md border-gray-300"
+                                    placeholder="e.g., 18"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 3: Hearing -->
+                <div id="page-3" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+                        Step 3: Hearing Test
+                    </h2>
+                    <div
+                        class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-6"
+                    >
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">
+                            Official Medical Standards for Hearing
+                        </h3>
+                        <div class="space-y-4 text-gray-700">
+                            <p>
+                                A candidate must be able to hear a forced
+                                whisper with each ear separately from a distance
+                                of <strong>610 cm (20 feet)</strong>. If
+                                required, a Pure Tone Audiometry (PTA) test is
+                                conducted, and hearing loss should not exceed
+                                20-25 decibels in speech frequencies (250Hz to
+                                8000Hz).
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6"
+                    >
+                        <h4 class="font-semibold text-lg mb-2">
+                            Instructions for Self-Assessment:
+                        </h4>
+                        <ol
+                            class="list-decimal list-inside space-y-2 text-gray-700"
+                        >
+                            <li>
+                                Find a quiet place and use headphones for
+                                accurate results.
+                            </li>
+                            <li>
+                                Click "Start Test" to enable the audio controls.
+                            </li>
+                            <li>
+                                Test each ear by clicking the frequency buttons.
+                                If you hear the tone, check the "Heard" box.
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="text-center mb-6">
+                        <button
+                            id="start-test-btn"
+                            onclick="initAudio()"
+                            class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition shadow-md"
+                        >
+                            Start Test
+                        </button>
+                    </div>
+                    <div
+                        id="hearing-controls"
+                        class="space-y-6 opacity-50 pointer-events-none"
+                    >
+                        <div>
+                            <h3
+                                class="text-lg font-semibold text-gray-700 mb-2"
+                            >
+                                Left Ear
+                            </h3>
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-left-low"
+                                        onclick="playTone(500, 'left')"
+                                        class="bg-blue-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        Low (500Hz)</button
+                                    ><input
+                                        id="left-low"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="left-low">Heard</label>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-left-mid"
+                                        onclick="playTone(1000, 'left')"
+                                        class="bg-blue-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        Mid (1kHz)</button
+                                    ><input
+                                        id="left-mid"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="left-mid">Heard</label>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-left-high"
+                                        onclick="playTone(4000, 'left')"
+                                        class="bg-blue-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        High (4kHz)</button
+                                    ><input
+                                        id="left-high"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="left-high">Heard</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-lg font-semibold text-gray-700 mb-2"
+                            >
+                                Right Ear
+                            </h3>
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-right-low"
+                                        onclick="playTone(500, 'right')"
+                                        class="bg-green-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        Low (500Hz)</button
+                                    ><input
+                                        id="right-low"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="right-low">Heard</label>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-right-mid"
+                                        onclick="playTone(1000, 'right')"
+                                        class="bg-green-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        Mid (1kHz)</button
+                                    ><input
+                                        id="right-mid"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="right-mid">Heard</label>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        id="btn-right-high"
+                                        onclick="playTone(4000, 'right')"
+                                        class="bg-green-500 text-white p-2 rounded-full w-24"
+                                    >
+                                        High (4kHz)</button
+                                    ><input
+                                        id="right-high"
+                                        type="checkbox"
+                                        class="h-5 w-5"
+                                    /><label for="right-high">Heard</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 4: Medical History -->
+                <div id="page-4" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold mb-2 text-gray-800">
+                        Step 4: Medical History Checklist
+                    </h2>
+                    <p class="text-gray-600 mb-4">
+                        Check any conditions you have or have a history of.
+                    </p>
+                    <div class="mb-6">
+                        <button
+                            id="rejection-info-button"
+                            class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition flex items-center justify-center space-x-2"
+                        >
+                            <span
+                                >Understanding Medical Rejection Types (TR vs.
+                                PR)</span
+                            >
+                        </button>
+                    </div>
+                    <div id="medical-history-checklist" class="space-y-6">
+                        <!-- Checklists will be populated here by JS -->
+                    </div>
+                </div>
+
+                <!-- PAGE 5: Results -->
+                <div id="page-5" class="page-content hidden">
+                    <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+                        Final Assessment Summary
+                    </h2>
+                    <div id="final-results-container" class="space-y-6">
+                        <!-- Summary will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div
+                    id="navigation-controls"
+                    class="mt-8 pt-6 border-t flex justify-between items-center"
+                >
+                    <button
+                        id="prev-btn"
+                        class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition"
+                    >
+                        Previous
+                    </button>
+                    <button
+                        id="next-btn"
+                        class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Next
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- MODALS (from other pages) -->
+        <div id="vision-result-modal" class="modal-backdrop">
+            <div
+                class="modal-content bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto p-6"
+            >
+                <div id="vision-modal-content-container"></div>
+            </div>
+        </div>
+        <div id="rejection-info-modal" class="modal-backdrop">
+            <div
+                class="modal-content bg-white w-11/12 md:max-w-2xl mx-auto rounded-lg shadow-lg z-50"
+            >
+                <div class="py-4 text-left px-6">
+                    <div class="flex justify-between items-center pb-3">
+                        <p class="text-2xl font-bold">
+                            Medical Rejection Classifications
+                        </p>
+                        <button class="modal-close cursor-pointer z-50">
+                            <svg
+                                class="fill-current text-black"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="my-5 space-y-4">
+                        <div
+                            class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg"
+                        >
+                            <h3 class="font-bold text-yellow-800">
+                                Temporary Rejection (TR)
+                            </h3>
+                            <p class="text-sm text-yellow-700 mt-1">
+                                Issued for curable conditions. Candidates are
+                                given 42 days for treatment and re-evaluation.
+                            </p>
+                        </div>
+                        <div
+                            class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg"
+                        >
+                            <h3 class="font-bold text-red-800">
+                                Permanent Rejection (PR)
+                            </h3>
+                            <p class="text-sm text-red-700 mt-1">
+                                Reserved for chronic or incurable conditions
+                                incompatible with military service.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="condition-info-modal" class="modal-backdrop">
+            <div
+                class="modal-content bg-white w-11/12 md:max-w-2xl mx-auto rounded-lg shadow-lg z-50"
+            >
+                <div class="py-4 text-left px-6">
+                    <div class="flex justify-between items-center pb-3">
+                        <p
+                            id="condition-modal-title"
+                            class="text-2xl font-bold"
+                        >
+                            Condition Info
+                        </p>
+                        <button class="modal-close cursor-pointer z-50">
+                            <svg
+                                class="fill-current text-black"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div
+                        id="condition-modal-content"
+                        class="my-5 text-sm text-gray-700"
+                    ></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>

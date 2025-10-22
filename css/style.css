@@ -1,0 +1,85 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+.page-content {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.step-active {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    font-weight: 700;
+}
+.step-complete {
+    border-color: #16a34a;
+    color: #16a34a;
+}
+.step-inactive {
+    border-color: #d1d5db;
+    color: #6b7280;
+}
+.hidden-section,
+.hidden {
+    display: none;
+}
+.ishihara-plate {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #e5e7eb;
+    transition:
+        transform 0.2s,
+        border-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.ishihara-plate:hover {
+    transform: scale(1.05);
+}
+.plate-correct {
+    border-color: #16a34a;
+}
+.plate-incorrect {
+    border-color: #dc2626;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
+}
+.modal-backdrop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+.modal-backdrop.visible .modal-content {
+    transform: translateY(0) scale(1);
+}
