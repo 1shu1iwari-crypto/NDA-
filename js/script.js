@@ -350,31 +350,31 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       src: "img/3.png",
-      answer: "29",
-    },
-    {
-      src: "img/4.png",
-      answer: "5",
-    },
-    {
-      src: "img/5.png",
-      answer: "3",
-    },
-    {
-      src: "img/6.png",
-      answer: "15",
-    },
-    {
-      src: "img/7.png",
-      answer: "74",
-    },
-    {
-      src: "img/8.png",
       answer: "6",
     },
     {
+      src: "img/4.png",
+      answer: "29",
+    },
+    {
+      src: "img/5.png",
+      answer: "5",
+    },
+    {
+      src: "img/6.png",
+      answer: "3",
+    },
+    {
+      src: "img/7.png",
+      answer: "15",
+    },
+    {
+      src: "img/8.png",
+      answer: "74",
+    },
+    {
       src: "img/9.png",
-      answer: "2",
+      answer: "6",
     },
     {
       src: "img/10.png",
@@ -382,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       src: "img/11.png",
-      answer: "73",
+      answer: "5",
     },
   ];
   const visionStandards = {
